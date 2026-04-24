@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'ae.pawmatch.app',
-  appName: 'PawMatch UAE',
+  appId: 'com.petpawsphere.app',
+  appName: 'PetPawSphere',
   webDir: 'dist',
   server: {
     // For dev: proxy to local API
@@ -10,7 +10,7 @@ const config: CapacitorConfig = {
     cleartext: true,
   },
   ios: {
-    scheme: 'PawMatch',
+    scheme: 'PetPawSphere',
   },
   android: {
     buildOptions: {
