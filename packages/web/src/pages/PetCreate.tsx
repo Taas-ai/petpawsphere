@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { api } from '@/lib/api';
+import { posthog } from '@/lib/posthog';
 
 const EMIRATES = [
   'Abu Dhabi', 'Dubai', 'Sharjah', 'Ajman',
@@ -46,7 +47,10 @@ export function PetCreate() {
       };
       return api.pets.create(payload);
     },
-    onSuccess: () => navigate('/pets'),
+    onSuccess: (data) => {
+      posthog.capture('pet_created', { species: (data as Record<string, unknown>).species, breed: (data as Record<string, unknown>).breed });
+      navigate('/pets');
+    },
   });
 
   const onSubmit = (data: PetFormData) => {
@@ -54,7 +58,7 @@ export function PetCreate() {
   };
 
   const canProceed = () => {
-    if (step === 1) return values.name && values.breed && values.species;
+    if (step === 1) return values.name && values.breed && values.species && values.location;
     return true;
   };
 

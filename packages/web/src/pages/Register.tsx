@@ -22,6 +22,7 @@ export function Register() {
   const [emirate, setEmirate] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [dataConsent, setDataConsent] = useState(false);
 
   const handleGoogleLogin = async () => {
     setError('');
@@ -73,7 +74,7 @@ export function Register() {
             </div>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
-          <p className="mt-2 text-gray-600">Join the PawMatch community</p>
+          <p className="mt-2 text-gray-600">Join the PetPawSphere community</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
@@ -163,9 +164,27 @@ export function Register() {
               </div>
             </div>
 
+            <div className="flex items-start gap-2.5">
+              <input
+                id="data-consent"
+                type="checkbox"
+                checked={dataConsent}
+                onChange={(e) => setDataConsent(e.target.checked)}
+                required
+                className="mt-0.5 h-4 w-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+              />
+              <label htmlFor="data-consent" className="text-xs text-gray-500 leading-relaxed">
+                I agree to the{' '}
+                <Link to="/terms" className="text-amber-600 hover:underline">Terms of Service</Link>
+                {' '}and{' '}
+                <Link to="/privacy" className="text-amber-600 hover:underline">Privacy Policy</Link>,
+                and consent to my data being processed on servers outside the UAE in accordance with the UAE Personal Data Protection Law.
+              </label>
+            </div>
+
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !dataConsent}
               className="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 disabled:bg-amber-300 text-white font-semibold rounded-xl transition-colors text-sm"
             >
               {loading ? 'Creating account...' : 'Create Account'}

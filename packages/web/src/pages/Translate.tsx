@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Languages, ArrowRightLeft, Copy, Check } from 'lucide-react';
 import { api } from '@/lib/api';
+import { posthog } from '@/lib/posthog';
 
 const CONTEXTS = ['profile', 'chat', 'medical', 'legal'] as const;
 
@@ -15,10 +16,13 @@ export function Translate() {
     mutationFn: () => {
       const data: Record<string, unknown> = {
         text,
-        targetLanguage: targetLang === 'ar' ? 'Arabic' : 'English',
+        targetLanguage: targetLang === 'ar' ? 'arabic' : 'english',
       };
       if (context) data['context'] = context;
       return api.tools.translate(data);
+    },
+    onSuccess: () => {
+      posthog.capture('translate_used', { target_language: targetLang, context: context || 'none' });
     },
   });
 

@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, PawPrint, MessageCircle, FileText } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuth } from '@/lib/auth-context';
+import { posthog } from '@/lib/posthog';
 import { CompatibilityCard } from '@/components/CompatibilityCard';
 
 export function MatchDetail() {
@@ -19,7 +20,8 @@ export function MatchDetail() {
 
   const respondMutation = useMutation({
     mutationFn: (status: string) => api.matches.respond(id!, status),
-    onSuccess: () => {
+    onSuccess: (_data, status) => {
+      posthog.capture(status === 'accepted' ? 'match_accepted' : 'match_rejected', { match_id: id });
       queryClient.invalidateQueries({ queryKey: ['match', id] });
     },
   });
@@ -45,7 +47,7 @@ export function MatchDetail() {
   const petB = match.petB as Record<string, unknown> | undefined;
   const petAOwnerId = (petA?.ownerId as string) ?? (match.petAOwnerId as string);
   const petBOwnerId = (petB?.ownerId as string) ?? (match.petBOwnerId as string);
-  const requesterId = match.requesterId as string | undefined;
+  const requesterId = (match.requesterId ?? match.requestedBy) as string | undefined;
 
   // User can respond if they own the non-requesting pet and match is pending
   const isResponder =

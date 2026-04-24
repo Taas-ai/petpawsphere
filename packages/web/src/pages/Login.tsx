@@ -61,7 +61,7 @@ export function Login() {
             </div>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="mt-2 text-gray-600">Sign in to your PawMatch account</p>
+          <p className="mt-2 text-gray-600">Sign in to your PetPawSphere account</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">

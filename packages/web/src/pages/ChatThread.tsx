@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, Send } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuth } from '@/lib/auth-context';
+import { posthog } from '@/lib/posthog';
 import { ChatBubble } from '@/components/ChatBubble';
 
 export function ChatThread() {
@@ -30,6 +31,7 @@ export function ChatThread() {
   const sendMutation = useMutation({
     mutationFn: (text: string) => api.messages.send(matchId!, text),
     onSuccess: () => {
+      posthog.capture('message_sent', { match_id: matchId });
       queryClient.invalidateQueries({ queryKey: ['messages', matchId] });
       setContent('');
       inputRef.current?.focus();
