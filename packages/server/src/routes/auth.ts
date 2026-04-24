@@ -62,5 +62,25 @@ export function authRouter(db: PetPawSphereDb): Router {
     res.json(sanitizeUser(user));
   });
 
+  // PATCH /me — update name, phone, emirate. Rejects any other field.
+  router.patch('/me', requireAuth, async (req: AuthRequest, res) => {
+    const allowed = new Set(['name', 'phone', 'emirate']);
+    const forbidden = Object.keys(req.body || {}).filter(k => !allowed.has(k));
+    if (forbidden.length > 0) {
+      res.status(400).json({ error: `Forbidden fields: ${forbidden.join(', ')}` });
+      return;
+    }
+
+    const patch: Record<string, unknown> = {};
+    if (typeof req.body.name === 'string') patch.name = req.body.name.trim().slice(0, 200);
+    if (typeof req.body.phone === 'string') patch.phone = req.body.phone.trim().slice(0, 30);
+    if (typeof req.body.emirate === 'string') patch.emirate = req.body.emirate.trim().slice(0, 50);
+    patch.updatedAt = new Date().toISOString();
+
+    await db.update(users).set(patch).where(eq(users.id, req.userId!));
+    const [updated] = await db.select().from(users).where(eq(users.id, req.userId!));
+    res.json(sanitizeUser(updated));
+  });
+
   return router;
 }
