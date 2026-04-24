@@ -8,3 +8,12 @@ firebase-debug.log
 # Capacitor native projects
 packages/web/ios/
 packages/web/android/
+
+# Hookify local rules
+.claude/*.local.md
+
+# Firebase Functions secrets
+functions/.env
+
+# Compiled cloud functions output
+functions/lib/

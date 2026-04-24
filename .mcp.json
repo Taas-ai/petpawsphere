@@ -1,12 +1,10 @@
 {
   "mcpServers": {
-    "pawmatch-genkit": {
-      "command": "npx",
-      "args": ["tsx", "src/mcp-server.ts"],
-      "cwd": "/Users/taurus_ai/Desktop/JACOBS's Projects/JACOB_PET_APP",
-      "env": {
-        "GOOGLE_GENAI_API_KEY": "${GOOGLE_GENAI_API_KEY}"
-      }
+    "petpawsphere-genkit": {
+      "command": "node",
+      "args": ["--env-file=../../.env", "../../node_modules/.bin/tsx", "src/mcp-server.ts"],
+      "cwd": "/Users/taurus_ai/Desktop/JACOBS's Projects/JACOB_PET_APP/packages/server",
+      "env": {}
     }
   }
 }
