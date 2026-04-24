@@ -1,3 +1,4 @@
+import { initSentry, Sentry } from './lib/sentry';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -13,6 +14,7 @@ import { resourcesRouter } from './routes/resources';
 import { diagnosticsRouter } from './routes/diagnostics';
 
 export function createApp(dbOrUrl: string | PetPawSphereDb = process.env.DATABASE_URL || '') {
+  initSentry();
   const db = typeof dbOrUrl === 'string' ? createDb(dbOrUrl) : dbOrUrl;
   const app = express();
 
@@ -87,6 +89,8 @@ export function createApp(dbOrUrl: string | PetPawSphereDb = process.env.DATABAS
   app.use('/api', aiLimiter, diagnosticsRouter(db));
   app.use('/api', aiLimiter, aiToolsRouter(db));
   app.use('/api/contracts', contractsRouter(db));
+
+  Sentry.setupExpressErrorHandler(app);
 
   return app;
 }
