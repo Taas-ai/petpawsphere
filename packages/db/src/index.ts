@@ -10,4 +10,4 @@ export function createDb(url: string) {
   return drizzle(client, { schema });
 }
 
-export type PawMatchDb = ReturnType<typeof createDb>;
+export type PetPawSphereDb = ReturnType<typeof createDb>;

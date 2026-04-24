@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { eq } from 'drizzle-orm';
-import { users, PawMatchDb } from '@pawmatch/db';
+import { users, PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 import { sanitizeUser } from '../utils/user';
 
-export function authRouter(db: PawMatchDb): Router {
+export function authRouter(db: PetPawSphereDb): Router {
   const router = Router();
 
   // Called after Firebase sign-in to upsert user in Supabase
