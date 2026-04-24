@@ -18,6 +18,7 @@ interface User {
   email: string;
   name: string;
   emirate: string;
+  phone?: string;
   role: string;
 }
 
