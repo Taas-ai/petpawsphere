@@ -1,17 +1,17 @@
 {
-  "name": "@pawmatch/server",
+  "name": "@petpawsphere/server",
   "version": "1.0.0",
   "private": true,
   "type": "commonjs",
   "main": "dist/api-server.js",
   "scripts": {
-    "dev": "tsx watch src/api-server.ts",
+    "dev": "node --env-file=../../.env ../../node_modules/.bin/tsx watch src/api-server.ts",
     "build": "tsc",
     "mcp": "tsx src/mcp-server.ts",
     "genkit:dev": "npx genkit start -- tsx src/mcp-server.ts"
   },
   "dependencies": {
-    "@pawmatch/db": "*",
+    "@petpawsphere/db": "*",
     "@genkit-ai/express": "^1.29.0",
     "@genkit-ai/google-genai": "^1.29.0",
     "@genkit-ai/mcp": "^1.29.0",

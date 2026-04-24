@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { pets, vetConsultations, PawMatchDb } from '@pawmatch/db';
+import { pets, vetConsultations, PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 import { breedDetectFlow } from '../flows/breed-detect';
 import { translateFlow } from '../flows/translate';
@@ -9,7 +9,7 @@ import { profileReviewFlow } from '../flows/profile-review';
 import { vetAdvisorFlow } from '../flows/vet-advisor';
 import { validateImageUrl } from '../utils/validate-url';
 
-export function aiToolsRouter(db: PawMatchDb): Router {
+export function aiToolsRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 

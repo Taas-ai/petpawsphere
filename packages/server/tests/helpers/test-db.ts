@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import { drizzle } from 'drizzle-orm/better-sqlite3';
-import type { PawMatchDb } from '@pawmatch/db';
+import type { PetPawSphereDb } from '@petpawsphere/db';
 
 /**
  * Creates an in-memory SQLite database for tests.
@@ -8,7 +8,7 @@ import type { PawMatchDb } from '@pawmatch/db';
  *
  * Use with createApp(createTestDb()) to inject the DB into the Express app.
  */
-export function createTestDb(): PawMatchDb {
+export function createTestDb(): PetPawSphereDb {
   const sqlite = new Database(':memory:');
   sqlite.pragma('foreign_keys = ON');
 
@@ -120,7 +120,7 @@ export function createTestDb(): PawMatchDb {
 
   // Don't pass pgTable schema to SQLite driver — column type constructors are pg-specific.
   // Flat queries (select/insert/update/delete) work fine without the schema config.
-  return drizzle(sqlite) as unknown as PawMatchDb;
+  return drizzle(sqlite) as unknown as PetPawSphereDb;
 }
 
 /** Returns an auth token that the firebase-admin mock will accept, yielding the given uid. */

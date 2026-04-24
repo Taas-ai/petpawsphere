@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq, inArray, or } from 'drizzle-orm';
-import { pets, matches, PawMatchDb } from '@pawmatch/db';
+import { pets, matches, PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 import { petMatchFlow } from '../flows/pet-match';
+import { parseMatch } from '../utils/parse-json';
 
-export function matchesRouter(db: PawMatchDb): Router {
+export function matchesRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
@@ -67,7 +68,7 @@ export function matchesRouter(db: PawMatchDb): Router {
       });
 
       const [match] = await db.select().from(matches).where(eq(matches.id, id));
-      res.status(201).json(match);
+      res.status(201).json({ ...parseMatch(match as Record<string, unknown>), petA, petB });
     } catch (err: any) {
       console.error('Match analysis error:', err);
       res.status(500).json({ error: 'Match analysis failed' });
@@ -87,7 +88,20 @@ export function matchesRouter(db: PawMatchDb): Router {
     const userMatches = await db.select().from(matches).where(
       or(inArray(matches.petAId, userPetIds), inArray(matches.petBId, userPetIds))
     );
-    res.json(userMatches);
+
+    // Enrich with pet name/breed data
+    const allPetIds = [...new Set(userMatches.flatMap(m => [m.petAId, m.petBId]))];
+    const petRows = allPetIds.length > 0
+      ? await db.select({ id: pets.id, name: pets.name, breed: pets.breed, species: pets.species, ownerId: pets.ownerId })
+          .from(pets).where(inArray(pets.id, allPetIds))
+      : [];
+    const petMap = new Map(petRows.map(p => [p.id, p]));
+
+    res.json(userMatches.map(m => ({
+      ...parseMatch(m as Record<string, unknown>),
+      petA: petMap.get(m.petAId),
+      petB: petMap.get(m.petBId),
+    })));
   });
 
   // GET /:id — Get single match
@@ -107,7 +121,7 @@ export function matchesRouter(db: PawMatchDb): Router {
       return;
     }
 
-    res.json(match);
+    res.json({ ...parseMatch(match as Record<string, unknown>), petA, petB });
   });
 
   // PUT /:id/respond — Accept or reject a match
@@ -133,9 +147,9 @@ export function matchesRouter(db: PawMatchDb): Router {
       return;
     }
 
-    await db.update(matches).set({ status, updatedAt: new Date().toISOString() }).where(eq(matches.id, req.params.id));
-    const [updated] = await db.select().from(matches).where(eq(matches.id, req.params.id));
-    res.json(updated);
+    const updatedAt = new Date().toISOString();
+    await db.update(matches).set({ status, updatedAt }).where(eq(matches.id, req.params.id));
+    res.json({ ...parseMatch({ ...match, status, updatedAt } as Record<string, unknown>), petA, petB });
   });
 
   return router;

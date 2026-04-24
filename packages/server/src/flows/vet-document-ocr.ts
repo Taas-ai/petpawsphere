@@ -57,7 +57,7 @@ export const vetDocumentOCRFlow = ai.defineFlow(
       prompt: [
         { media: { url: input.imageUrl } },
         {
-          text: `You are a veterinary document OCR specialist for PawMatch UAE.
+          text: `You are a veterinary document OCR specialist for PetPawSphere.
 
 Extract structured data from this ${input.documentType.replace('_', ' ')}.
 

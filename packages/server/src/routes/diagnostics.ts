@@ -1,13 +1,14 @@
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq, desc } from 'drizzle-orm';
-import { pets, petDiagnostics, petDocuments, PawMatchDb } from '@pawmatch/db';
+import { pets, petDiagnostics, petDocuments, PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 import { petDiagnosticFlow } from '../flows/pet-diagnostic';
 import { vetDocumentOCRFlow } from '../flows/vet-document-ocr';
 import { validateImageUrl } from '../utils/validate-url';
+import { parseDiagnostic } from '../utils/parse-json';
 
-export function diagnosticsRouter(db: PawMatchDb): Router {
+export function diagnosticsRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
@@ -71,7 +72,7 @@ export function diagnosticsRouter(db: PawMatchDb): Router {
       const results = await db.select().from(petDiagnostics)
         .where(eq(petDiagnostics.petId, req.params.petId))
         .orderBy(desc(petDiagnostics.createdAt));
-      res.json(results);
+      res.json(results.map(d => parseDiagnostic(d as Record<string, unknown>)));
     } catch (err) {
       console.error('Diagnostic history error:', err);
       res.status(500).json({ error: 'Failed to fetch diagnostics' });

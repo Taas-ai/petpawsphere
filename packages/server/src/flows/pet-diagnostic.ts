@@ -32,7 +32,7 @@ export const petDiagnosticFlow = ai.defineFlow(
       prompt: [
         { media: { url: input.imageUrl } },
         {
-          text: `You are a veterinary diagnostic assistant for PawMatch UAE.
+          text: `You are a veterinary diagnostic assistant for PetPawSphere.
 
 Analyze this photo of a ${input.species} (${input.breed}, ${input.age} years old).
 ${input.symptoms ? `Owner reports: "${input.symptoms}"` : 'No symptoms described by owner.'}

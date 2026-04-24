@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { pets, matches, messages, PawMatchDb } from '@pawmatch/db';
+import { pets, matches, messages, PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-async function isMatchParticipant(db: PawMatchDb, matchId: string, userId: string): Promise<boolean> {
+async function isMatchParticipant(db: PetPawSphereDb, matchId: string, userId: string): Promise<boolean> {
   const [match] = await db.select().from(matches).where(eq(matches.id, matchId));
   if (!match) return false;
 
@@ -14,7 +14,7 @@ async function isMatchParticipant(db: PawMatchDb, matchId: string, userId: strin
   return (petA?.ownerId === userId) || (petB?.ownerId === userId);
 }
 
-export function messagesRouter(db: PawMatchDb): Router {
+export function messagesRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 

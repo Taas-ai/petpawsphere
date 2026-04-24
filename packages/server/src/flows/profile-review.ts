@@ -32,7 +32,7 @@ export const profileReviewFlow = ai.defineFlow(
   },
   async (input) => {
     const { output } = await ai.generate({
-      prompt: `You are PawMatch UAE's profile quality and fraud detection AI.
+      prompt: `You are PetPawSphere's profile quality and fraud detection AI.
 
 Review this pet profile for quality, completeness, and potential fraud:
 
