@@ -112,6 +112,7 @@ export default function Diagnostic() {
             <img
               src={imageUrl}
               alt="Preview"
+              loading="lazy"
               className="w-full h-48 object-cover"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';

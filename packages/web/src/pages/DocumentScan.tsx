@@ -121,6 +121,7 @@ export default function DocumentScan() {
             <img
               src={imageUrl}
               alt="Document preview"
+              loading="lazy"
               className="w-full h-48 object-cover"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
