@@ -232,7 +232,7 @@ Contact: **admin@taurusai.io** | [TAURUS AI Corp](https://taurusai.io)
 
 ## Security
 
-Found a vulnerability? Please do **not** open a public issue. Email **privacy@petpawsphere.ae** with:
+Found a vulnerability? Please do **not** open a public issue. Email **privacy@petpawsphere.com** with:
 
 - Description of the vulnerability
 - Steps to reproduce

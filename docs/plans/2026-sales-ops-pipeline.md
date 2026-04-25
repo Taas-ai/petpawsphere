@@ -150,7 +150,7 @@ PetCity serves 150+ GCC stores. Every customer who buys food from you
 also needs to breed or rehome their pet — right now they do that on
 Facebook Groups.
 
-PetPawSphere (petpawsphere.ae) is the UAE's first AI-powered pet breeding
+PetPawSphere (petpawsphere.com) is the UAE's first AI-powered pet breeding
 platform — breed detection, genetic compatibility, AI vet advisor,
 Arabic + English UI, UAE PDPL compliant.
 

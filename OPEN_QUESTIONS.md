@@ -12,7 +12,7 @@ Blocking or near-blocking unknowns uncovered while producing the handoff. Resolv
 3. **Is the Supabase Postgres instance already provisioned and reachable from `me-central1`?** `functions/src/index.ts` reads `DATABASE_URL` at cold start and makes a pooled Postgres connection. If the DB is in `ap-southeast-1` or `us-east-1`, each cold start pays ~200-400ms of RTT. Worth considering Supabase MEA region or Cloud SQL colocated in `me-central1`.
 4. **Billing plan on `petapp-38f4a`.** Blaze is required for v2 functions. Confirm the plan is upgraded.
 5. **App Check / reCAPTCHA key.** `VITE_RECAPTCHA_SITE_KEY` is optional today; without it, the API is exposed to bots at the Firebase Functions level once auth tokens are acquired. Should we enable App Check in enforcement mode before paid launch?
-6. **Custom domain.** No CNAME/TXT records found in the repo. Which domain should Hosting map to — `petpawsphere.ae`, `petpawsphere.com`, or another? Who owns the registrar?
+6. **Custom domain.** No CNAME/TXT records found in the repo. Which domain should Hosting map to — `petpawsphere.com`, `petpawsphere.com`, or another? Who owns the registrar?
 
 ## Secrets & security
 

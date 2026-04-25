@@ -67,7 +67,7 @@ Make sure production URL returns `''` (same-origin via Hosting rewrite) or `http
 ### Step 2.3 — Add domain to Firebase Auth
 Firebase Console → Authentication → Settings → Authorized Domains:
 - Add: `petpawsphere.web.app`
-- Add: `petpawsphere.ae` (when custom domain is ready)
+- Add: `petpawsphere.com` (when custom domain is ready)
 
 ---
 
@@ -145,7 +145,7 @@ Take screenshots of: Landing, Dashboard, Browse Pets, Match Detail, Chat, AI Too
 ---
 
 ## Phase 6: Custom Domain (Optional but Recommended)
-**Goal**: `app.petpawsphere.ae` instead of `petpawsphere.web.app`
+**Goal**: `app.petpawsphere.com` instead of `petpawsphere.web.app`
 
 ```bash
 # In Firebase Console → Hosting → Add custom domain

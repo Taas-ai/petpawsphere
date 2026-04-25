@@ -94,11 +94,11 @@ No CNAME/TXT records are referenced in the repo. Default Firebase domains will b
 - `petapp-38f4a.web.app`
 - `petapp-38f4a.firebaseapp.com`
 
-To wire `petpawsphere.ae` (or chosen apex):
+To wire `petpawsphere.com` (or chosen apex):
 1. Firebase Console → Hosting → Add custom domain → enter apex or `www`
 2. Add the TXT (ownership) and A/AAAA (or CNAME for `www`) records shown at your registrar (likely Namecheap/Cloudflare/Route 53)
 3. Wait for provisioning (up to 24h; usually minutes). Firebase auto-issues a Let's Encrypt cert.
-4. Update `ALLOWED_ORIGINS` secret to include `https://petpawsphere.ae,https://www.petpawsphere.ae`
+4. Update `ALLOWED_ORIGINS` secret to include `https://petpawsphere.com,https://www.petpawsphere.com`
 5. Update `VITE_FIREBASE_AUTH_DOMAIN` if you want auth links to show your own domain (requires Identity Platform upgrade).
 
 ## 7. Post-deploy smoke tests

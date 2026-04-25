@@ -33,3 +33,6 @@ packages/*/.codemap/
 
 # Dev/QA screenshots in repo root (real brand assets live in packages/web/public/)
 /*.png
+
+# AI-generated brand iteration drafts — final picks get hand-curated into packages/web/public/brand/
+_brand_iterations/

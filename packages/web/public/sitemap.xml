@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://petpawsphere.ae/</loc><priority>1.0</priority></url>
-  <url><loc>https://petpawsphere.ae/login</loc><priority>0.6</priority></url>
-  <url><loc>https://petpawsphere.ae/register</loc><priority>0.7</priority></url>
-  <url><loc>https://petpawsphere.ae/terms</loc><priority>0.3</priority></url>
-  <url><loc>https://petpawsphere.ae/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://petpawsphere.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://petpawsphere.com/login</loc><priority>0.6</priority></url>
+  <url><loc>https://petpawsphere.com/register</loc><priority>0.7</priority></url>
+  <url><loc>https://petpawsphere.com/terms</loc><priority>0.3</priority></url>
+  <url><loc>https://petpawsphere.com/privacy</loc><priority>0.3</priority></url>
 </urlset>

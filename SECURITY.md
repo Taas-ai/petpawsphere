@@ -11,7 +11,7 @@
 
 **Do not open a public GitHub issue for security vulnerabilities.**
 
-Email **privacy@petpawsphere.ae** with:
+Email **privacy@petpawsphere.com** with:
 
 - A description of the vulnerability
 - Steps to reproduce
