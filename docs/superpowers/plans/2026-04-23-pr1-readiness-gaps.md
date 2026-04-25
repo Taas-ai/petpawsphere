@@ -158,9 +158,9 @@ Expected: `Switched to a new branch 'feat/pr1-readiness-gaps'`
 
 Run: `git log --oneline -1`
 
-Expected (prefix): `f079342 docs: approve launch-readiness + subscription spec`
+Expected (prefix): `30ba59d docs: add PR-1 implementation plan` (the plan commit itself). Parent should be `f079342` (spec commit).
 
-If HEAD differs, stop and investigate — scaffold assumptions may be invalid.
+If HEAD is neither of those SHAs, stop and investigate — scaffold assumptions may be invalid.
 
 - [ ] **Step 0.3: Snapshot untracked file count**
 
