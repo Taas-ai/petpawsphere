@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://pawmatch.ae/sitemap.xml
+Sitemap: https://petpawsphere.ae/sitemap.xml

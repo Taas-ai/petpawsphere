@@ -1,4 +1,4 @@
-# PawMatch UAE — Diagnostic OCR/MLM Feature Design
+# PetPawSphere — Diagnostic OCR/MLM Feature Design
 
 **Date:** 2026-03-09
 **Author:** TAURUS AI Corp
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Add AI-powered veterinary diagnostics to PawMatch UAE: visual symptom analysis from pet photos and structured data extraction from vet documents (lab reports, prescriptions, vaccination certificates). Uses Gemini 2.5 Flash multimodal vision with the existing Genkit flow architecture.
+Add AI-powered veterinary diagnostics to PetPawSphere: visual symptom analysis from pet photos and structured data extraction from vet documents (lab reports, prescriptions, vaccination certificates). Uses Gemini 2.5 Flash multimodal vision with the existing Genkit flow architecture.
 
 ## Decisions
 

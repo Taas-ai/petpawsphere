@@ -1,4 +1,4 @@
-# PetPawSphere / PawMatch — CONTEXT DUMP
+# PetPawSphere / PetPawSphere — CONTEXT DUMP
 
 _Generated 2026-04-20. Repo state at HEAD `05b3034`._
 
@@ -6,8 +6,8 @@ _Generated 2026-04-20. Repo state at HEAD `05b3034`._
 
 ```
 $ git remote -v
-origin  https://github.com/Taas-ai/PawMatch-UAE.git (fetch)
-origin  https://github.com/Taas-ai/PawMatch-UAE.git (push)
+origin  https://github.com/Taas-ai/petpawsphere.git (fetch)
+origin  https://github.com/Taas-ai/petpawsphere.git (push)
 
 $ git log --oneline -20
 05b3034 docs(sales): add Year 1 sales ops pipeline — targets, sequences, CRM workflows
@@ -57,8 +57,8 @@ pet-mating-app-prd.md               (original product spec)
 fixtures/sample-data.ts
 
 docs/plans/
-  2026-03-07-pawmatch-fullplatform-design.md
-  2026-03-07-pawmatch-implementation.md
+  2026-03-07-petpawsphere-fullplatform-design.md
+  2026-03-07-petpawsphere-implementation.md
   2026-03-09-diagnostic-ocr-design.md
   2026-03-09-launch-readiness-report.md
   2026-03-11-devops-appstore.md

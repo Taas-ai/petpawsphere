@@ -28,7 +28,7 @@ npm run build --workspace=packages/web          # outputs packages/web/dist
 
 Both artifacts must exist before deploying.
 
-> ⚠ Bug to fix before first deploy: `functions/esbuild.mjs` aliases `@pawmatch/db` but the workspace is published as `@petpawsphere/db`. If functions start failing to resolve the DB module, update the alias to `@petpawsphere/db`. (Currently the functions bundle pulls db from the relative path via the server import chain, so this may be latent.)
+> ⚠ Bug to fix before first deploy: `functions/esbuild.mjs` aliases `@petpawsphere/db` but the workspace is published as `@petpawsphere/db`. If functions start failing to resolve the DB module, update the alias to `@petpawsphere/db`. (Currently the functions bundle pulls db from the relative path via the server import chain, so this may be latent.)
 
 ## 3. Deploy
 
@@ -94,11 +94,11 @@ No CNAME/TXT records are referenced in the repo. Default Firebase domains will b
 - `petapp-38f4a.web.app`
 - `petapp-38f4a.firebaseapp.com`
 
-To wire `pawmatch.ae` (or chosen apex):
+To wire `petpawsphere.ae` (or chosen apex):
 1. Firebase Console → Hosting → Add custom domain → enter apex or `www`
 2. Add the TXT (ownership) and A/AAAA (or CNAME for `www`) records shown at your registrar (likely Namecheap/Cloudflare/Route 53)
 3. Wait for provisioning (up to 24h; usually minutes). Firebase auto-issues a Let's Encrypt cert.
-4. Update `ALLOWED_ORIGINS` secret to include `https://pawmatch.ae,https://www.pawmatch.ae`
+4. Update `ALLOWED_ORIGINS` secret to include `https://petpawsphere.ae,https://www.petpawsphere.ae`
 5. Update `VITE_FIREBASE_AUTH_DOMAIN` if you want auth links to show your own domain (requires Identity Platform upgrade).
 
 ## 7. Post-deploy smoke tests

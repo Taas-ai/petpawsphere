@@ -1,4 +1,4 @@
-# PawMatch UAE — Launch Readiness Report
+# PetPawSphere — Launch Readiness Report
 
 **Date:** 2026-03-09
 **Auditor:** TAURUS AI Corp (Launch Manager)

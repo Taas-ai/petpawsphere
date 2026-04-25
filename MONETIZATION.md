@@ -6,7 +6,7 @@
 
 | Tier | Surface | Price point (AED) | Margin profile |
 |---|---|---|---|
-| **Freemium subscription — PawMatch Plus** | Web + mobile | 39/mo or 390/yr | High margin; recurring |
+| **Freemium subscription — PetPawSphere Plus** | Web + mobile | 39/mo or 390/yr | High margin; recurring |
 | **Boosted profile / Super-match** | Mobile + web micro-IAP | 9 per boost, 49 for 10-pack | Very high margin |
 | **Verified breeder/shelter listings** | Web marketplace | 199 one-time per listing, 999/yr unlimited | Bulk revenue, lower volume |
 | **AdMob / in-feed sponsored** | Mobile only (Capacitor) | CPM 4-8 USD | Low margin, high volume |
@@ -170,7 +170,7 @@ export function Paywall({ feature, children }: { feature: string; children: Reac
 
   return (
     <div className="rounded-lg border p-6 text-center">
-      <h3 className="text-lg font-semibold">Upgrade to PawMatch Plus</h3>
+      <h3 className="text-lg font-semibold">Upgrade to PetPawSphere Plus</h3>
       <p className="text-sm text-gray-600">Unlock {feature} — 39 AED/mo, cancel anytime.</p>
       <button onClick={upgrade} className="mt-4 rounded-md bg-amber-600 px-4 py-2 text-white">
         Upgrade
@@ -205,7 +205,7 @@ STRIPE_PRICE_PLUS_MONTHLY=price_...
 STRIPE_PRICE_PLUS_ANNUAL=price_...
 STRIPE_PRICE_BREEDER_LISTING=price_...
 STRIPE_PRICE_SUPER_MATCH=price_...
-WEB_ORIGIN=https://pawmatch.ae
+WEB_ORIGIN=https://petpawsphere.ae
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...    # for stripe.js on client if needed
 ```
 

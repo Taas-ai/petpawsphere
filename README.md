@@ -1,4 +1,4 @@
-# PawMatch UAE 🐾
+# PetPawSphere 🐾
 
 > **UAE's first AI-powered pet breeding platform** — match pets, detect breeds, get vet advice, and scan health documents, all powered by Google Gemini AI. Available in Arabic and English.
 
@@ -12,7 +12,7 @@
 
 ## Overview
 
-PawMatch UAE is a full-stack, production-grade AI pet platform built for the UAE market, compliant with **UAE Federal Decree-Law No. 45 of 2021 (PDPL)**. It combines:
+PetPawSphere is a full-stack, production-grade AI pet platform built for the UAE market, compliant with **UAE Federal Decree-Law No. 45 of 2021 (PDPL)**. It combines:
 
 - **AI Breed Detection** — identify pet breeds from photos via Google Gemini Vision
 - **Compatibility Matching** — AI-powered genetic and temperament compatibility analysis
@@ -67,8 +67,8 @@ PawMatch UAE is a full-stack, production-grade AI pet platform built for the UAE
 ### Installation
 
 ```bash
-git clone https://github.com/Taas-ai/pawmatch-uae.git
-cd pawmatch-uae
+git clone https://github.com/Taas-ai/petpawsphere.git
+cd petpawsphere
 npm install
 cp .env.example .env
 # Fill in your Firebase, Supabase, and Google AI credentials
@@ -232,7 +232,7 @@ Contact: **admin@taurusai.io** | [TAURUS AI Corp](https://taurusai.io)
 
 ## Security
 
-Found a vulnerability? Please do **not** open a public issue. Email **privacy@pawmatch.ae** with:
+Found a vulnerability? Please do **not** open a public issue. Email **privacy@petpawsphere.ae** with:
 
 - Description of the vulnerability
 - Steps to reproduce
@@ -278,7 +278,7 @@ We welcome contributions! Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) befor
 
 ## Flip monetization on in 10 minutes (Stripe test mode)
 
-PawMatch ships with a dark-launched Stripe "Boost for 24h" paywall. While `MONETIZATION_ENABLED=false` (the default) both the web button and the Cloud Functions no-op. To enable:
+PetPawSphere ships with a dark-launched Stripe "Boost for 24h" paywall. While `MONETIZATION_ENABLED=false` (the default) both the web button and the Cloud Functions no-op. To enable:
 
 1. Create a Stripe account and switch to **test mode** (dashboard top-right toggle).
 2. Create one product + price — e.g. `Profile Boost 24h`, `USD 2.99` one-time.
