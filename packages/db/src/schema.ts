@@ -126,3 +126,27 @@ export const petDocuments = pgTable('pet_documents', {
   processedAt: text('processed_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
+
+// ─── Monetization ────────────────────────────────────────────────────────────
+// Dark-launched behind MONETIZATION_ENABLED flag.
+// After adding, run: npm run db:generate && npm run db:migrate
+
+export const subscriptions = pgTable('subscriptions', {
+  userId: varchar('user_id', { length: 128 }).primaryKey().references(() => users.id),
+  stripeCustomerId: text('stripe_customer_id').notNull().unique(),
+  stripeSubscriptionId: text('stripe_subscription_id'),
+  plan: text('plan').notNull(),
+  status: text('status').notNull(),
+  currentPeriodEnd: timestamp('current_period_end'),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export const boosts = pgTable('boosts', {
+  id: text('id').primaryKey(),
+  petId: text('pet_id').notNull().references(() => pets.id),
+  userId: varchar('user_id', { length: 128 }).notNull().references(() => users.id),
+  stripeSessionId: text('stripe_session_id').notNull().unique(),
+  startsAt: timestamp('starts_at').notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});

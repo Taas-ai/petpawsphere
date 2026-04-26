@@ -15,7 +15,7 @@ import './flows/vet-advisor';
 
 ai.defineTool(
   {
-    name: 'pawmatch_match_pets',
+    name: 'petpawsphere_match_pets',
     description:
       'Analyze compatibility between two pets for breeding. Returns compatibility score, genetic health risk, temperament match, and breeding recommendations for the UAE market.',
     inputSchema: z.object({
@@ -32,7 +32,7 @@ ai.defineTool(
 
 ai.defineTool(
   {
-    name: 'pawmatch_detect_breed',
+    name: 'petpawsphere_detect_breed',
     description:
       'Detect pet breed from an image URL or text description. Returns breed info, UAE popularity, heat tolerance, and estimated price in AED.',
     inputSchema: z.object({
@@ -49,7 +49,7 @@ ai.defineTool(
 
 ai.defineTool(
   {
-    name: 'pawmatch_translate',
+    name: 'petpawsphere_translate',
     description:
       'Translate text between Arabic and English with pet breeding terminology. Uses Gulf Arabic dialect.',
     inputSchema: z.object({
@@ -67,7 +67,7 @@ ai.defineTool(
 
 ai.defineTool(
   {
-    name: 'pawmatch_review_profile',
+    name: 'petpawsphere_review_profile',
     description:
       'Review a pet profile for quality, completeness, trust score, and fraud risk indicators. Determines if profile is ready for public listing.',
     inputSchema: z.object({
@@ -86,7 +86,7 @@ ai.defineTool(
 
 ai.defineTool(
   {
-    name: 'pawmatch_vet_advisor',
+    name: 'petpawsphere_vet_advisor',
     description:
       'Get veterinary breeding advice for a pet. Returns breeding readiness, required tests with UAE costs, breed-specific risks, and climate considerations.',
     inputSchema: z.object({
@@ -114,8 +114,8 @@ ai.defineTool(
 
 ai.definePrompt(
   {
-    name: 'pawmatch_listing_description',
-    description: 'Generate an attractive pet listing description for PawMatch UAE',
+    name: 'petpawsphere_listing_description',
+    description: 'Generate an attractive pet listing description for PetPawSphere',
     input: {
       schema: z.object({
         petName: z.string(),
@@ -128,7 +128,7 @@ ai.definePrompt(
       }),
     },
   },
-  `You are a copywriter for PawMatch UAE, the premium pet breeding platform.
+  `You are a copywriter for PetPawSphere, the premium pet breeding platform.
 
 Write an engaging, professional listing description for:
 - Name: {{petName}}
@@ -147,7 +147,7 @@ Mention health verification status if applicable. Target UAE pet owners.`
 
 ai.definePrompt(
   {
-    name: 'pawmatch_breeding_contract',
+    name: 'petpawsphere_breeding_contract',
     description: 'Generate a breeding agreement outline for two pet owners in the UAE',
     input: {
       schema: z.object({
@@ -161,7 +161,7 @@ ai.definePrompt(
       }),
     },
   },
-  `Generate a professional breeding agreement outline for PawMatch UAE.
+  `Generate a professional breeding agreement outline for PetPawSphere.
 
 Parties:
 - Owner A: {{ownerA}} (Pet: {{petA}})
@@ -182,7 +182,7 @@ Note: This is an outline only — recommend legal review before signing.`
 ai.defineResource(
   {
     name: 'UAE Popular Breeds',
-    uri: 'pawmatch://breeds/uae-popular',
+    uri: 'petpawsphere://breeds/uae-popular',
   },
   async () => ({
     content: [
@@ -215,7 +215,7 @@ ai.defineResource(
 ai.defineResource(
   {
     name: 'UAE Vet Clinics',
-    uri: 'pawmatch://vets/uae-directory',
+    uri: 'petpawsphere://vets/uae-directory',
   },
   async () => ({
     content: [
@@ -239,7 +239,7 @@ ai.defineResource(
 // ─────────────────────────────────────────────
 
 const server = createMcpServer(ai, {
-  name: 'pawmatch-uae',
+  name: 'petpawsphere',
   version: '1.0.0',
 });
 

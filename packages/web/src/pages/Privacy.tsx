@@ -7,13 +7,13 @@ export default function Privacy() {
 
         <section>
           <h2 className="text-xl font-semibold mt-6 mb-3">1. Introduction</h2>
-          <p>PawMatch UAE ("we", "our") is committed to protecting your personal data in accordance with UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data (PDPL) and applicable regulations.</p>
+          <p>PetPawSphere ("we", "our") is committed to protecting your personal data in accordance with UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data (PDPL) and applicable regulations.</p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mt-6 mb-3">2. Data We Collect</h2>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Account data:</strong> Name, email, phone number, emirate (authentication via Firebase Auth — no passwords stored by PawMatch UAE)</li>
+            <li><strong>Account data:</strong> Name, email, phone number, emirate (authentication via Firebase Auth — no passwords stored by PetPawSphere)</li>
             <li><strong>Pet data:</strong> Pet name, species, breed, age, weight, health records, photos</li>
             <li><strong>Usage data:</strong> Match requests, AI analysis results, chat messages</li>
             <li><strong>Diagnostic data:</strong> Pet health photos, vet documents (processed via AI)</li>
@@ -38,7 +38,7 @@ export default function Privacy() {
 
         <section>
           <h2 className="text-xl font-semibold mt-6 mb-3">5. Data Storage & Security</h2>
-          <p>Data is stored securely with encryption at rest. Authentication is handled by Firebase Auth (no passwords stored by PawMatch UAE). API communications use HTTPS/TLS. We implement rate limiting, CORS restrictions, and SSRF protection.</p>
+          <p>Data is stored securely with encryption at rest. Authentication is handled by Firebase Auth (no passwords stored by PetPawSphere). API communications use HTTPS/TLS. We implement rate limiting, CORS restrictions, and SSRF protection.</p>
         </section>
 
         <section>
@@ -56,7 +56,7 @@ export default function Privacy() {
             <li>Right to data portability</li>
             <li>Right to object to automated decision-making</li>
           </ul>
-          <p>To exercise these rights, email privacy@pawmatch.ae</p>
+          <p>To exercise these rights, email privacy@petpawsphere.com</p>
         </section>
 
         <section>
@@ -66,12 +66,19 @@ export default function Privacy() {
 
         <section>
           <h2 className="text-xl font-semibold mt-6 mb-3">9. Cross-Border Transfers</h2>
-          <p>AI processing involves sending data to Google servers which may be located outside the UAE. We ensure appropriate safeguards are in place per PDPL requirements.</p>
+          <p>Your data may be processed on servers located outside the UAE:</p>
+          <ul className="list-disc pl-6 space-y-2 mt-2">
+            <li><strong>Authentication:</strong> Firebase Auth (Google Cloud, United States)</li>
+            <li><strong>Database:</strong> Supabase PostgreSQL (AWS, United States)</li>
+            <li><strong>AI processing:</strong> Google Gemini (Google Cloud, various regions)</li>
+            <li><strong>API processing:</strong> Firebase Functions (Google Cloud, Middle East — Qatar)</li>
+          </ul>
+          <p className="mt-2">We rely on Google&apos;s and AWS&apos;s standard Data Processing Agreements (DPAs), which include Standard Contractual Clauses, as the legal basis for these transfers under Article 22 of the UAE PDPL. By creating an account, you explicitly consent to this cross-border processing.</p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mt-6 mb-3">10. Contact</h2>
-          <p>Data Protection Officer: privacy@pawmatch.ae<br/>TAURUS AI Corp, Dubai, United Arab Emirates</p>
+          <p>Data Protection Officer: privacy@petpawsphere.com<br/>TAURUS AI Corp, Dubai, United Arab Emirates</p>
         </section>
       </div>
     </div>

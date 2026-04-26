@@ -1,40 +1,41 @@
 {
-  "name": "@pawmatch/server",
+  "name": "@petpawsphere/server",
   "version": "1.0.0",
   "private": true,
   "type": "commonjs",
   "main": "dist/api-server.js",
   "scripts": {
-    "dev": "tsx watch src/api-server.ts",
+    "dev": "node --env-file=../../.env ../../node_modules/.bin/tsx watch src/api-server.ts",
     "build": "tsc",
     "mcp": "tsx src/mcp-server.ts",
     "genkit:dev": "npx genkit start -- tsx src/mcp-server.ts"
   },
   "dependencies": {
-    "@pawmatch/db": "*",
     "@genkit-ai/express": "^1.29.0",
     "@genkit-ai/google-genai": "^1.29.0",
     "@genkit-ai/mcp": "^1.29.0",
     "@modelcontextprotocol/sdk": "^1.27.1",
-    "genkit": "^1.29.0",
-    "zod": "^4.3.6",
-    "firebase-admin": "^12.0.0",
-    "express": "^4.21.0",
+    "@petpawsphere/db": "*",
+    "@sentry/node": "^8.55.1",
     "cors": "^2.8.5",
-    "uuid": "^11.1.0",
+    "express": "^4.21.0",
     "express-rate-limit": "^7.5.0",
-    "helmet": "^8.1.0"
+    "firebase-admin": "^12.0.0",
+    "genkit": "^1.29.0",
+    "helmet": "^8.1.0",
+    "uuid": "^11.1.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^25.3.5",
-    "@types/express": "^5.0.0",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^25.3.5",
+    "@types/supertest": "^6.0.2",
     "@types/uuid": "^10.0.0",
     "better-sqlite3": "^11.8.0",
-    "@types/better-sqlite3": "^7.6.13",
     "genkit-cli": "^1.29.0",
-    "tsx": "^4.21.0",
     "supertest": "^7.1.0",
-    "@types/supertest": "^6.0.2"
+    "tsx": "^4.21.0"
   }
 }

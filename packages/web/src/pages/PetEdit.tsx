@@ -42,7 +42,12 @@ export function PetEdit() {
 
   useEffect(() => {
     if (pet) {
-      const records = pet.healthRecords as string[] | undefined;
+      const rawRecords = pet.healthRecords;
+      const records: string[] = Array.isArray(rawRecords)
+        ? (rawRecords as string[])
+        : typeof rawRecords === 'string' && rawRecords.startsWith('[')
+          ? (JSON.parse(rawRecords) as string[])
+          : [];
       reset({
         name: (pet.name as string) ?? '',
         species: (pet.species as string) ?? 'dog',
@@ -51,7 +56,7 @@ export function PetEdit() {
         gender: (pet.gender as string) ?? 'male',
         weight: (pet.weight as number) ?? 0,
         location: (pet.location as string) ?? '',
-        healthRecords: records ? records.join(', ') : '',
+        healthRecords: records.join(', '),
         dnaTestResults: (pet.dnaTestResults as string) ?? '',
         pedigree: (pet.pedigree as string) ?? '',
         temperament: (pet.temperament as string) ?? '',

@@ -57,11 +57,11 @@ All critical and high vulnerabilities fixed:
 | Tier | Price | Features |
 |------|-------|----------|
 | Free | 0 AED/mo | 1 pet profile, 3 matches/mo, breed detect, basic chat |
-| Premium | 49 AED/mo | Unlimited pets, unlimited matches, AI diagnostics (10/mo), document OCR, priority matching |
+| Plus | 39 AED/mo | Unlimited pets, unlimited matches, AI diagnostics (10/mo), document OCR, priority matching |
 | Breeder Pro | 149 AED/mo | Everything + unlimited diagnostics, breeding contracts, vet advisor, API access, verified badge |
 | Vet Partner | Custom | Clinic dashboard, bulk diagnostics, referral integration |
 
-**Conversion target:** 3-5% free → Premium
+**Conversion target:** 3-5% free → Plus
 
 ## Version Roadmap
 

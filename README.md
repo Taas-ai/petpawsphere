@@ -276,6 +276,35 @@ We welcome contributions! Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) befor
 
 ---
 
+## Flip monetization on in 10 minutes (Stripe test mode)
+
+PawMatch ships with a dark-launched Stripe "Boost for 24h" paywall. While `MONETIZATION_ENABLED=false` (the default) both the web button and the Cloud Functions no-op. To enable:
+
+1. Create a Stripe account and switch to **test mode** (dashboard top-right toggle).
+2. Create one product + price — e.g. `Profile Boost 24h`, `USD 2.99` one-time.
+3. Copy `sk_test_...`, `pk_test_...`, and the new `price_...` ID.
+4. In `.env` at repo root:
+   ```
+   MONETIZATION_ENABLED=true
+   VITE_MONETIZATION_ENABLED=true
+   STRIPE_SECRET_KEY=sk_test_...
+   VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+   VITE_STRIPE_PRICE_BOOST_24H=price_...
+   WEB_ORIGIN=http://localhost:5173
+   ```
+5. Apply the Drizzle migration (adds `subscriptions` + `boosts` tables):
+   ```
+   npm run db:generate
+   npm run db:migrate
+   ```
+6. Add the webhook endpoint in Stripe dashboard → `https://<host>/stripeWebhook` (Cloud Functions URL after deploy). Copy the signing secret into `STRIPE_WEBHOOK_SECRET`.
+7. Deploy functions: `cd functions && npm i && npm run build && firebase deploy --only functions`.
+8. For live mode later, set secrets via `firebase functions:secrets:set STRIPE_SECRET_KEY` etc. — do **not** ship live keys in `.env`.
+
+Test locally: open `/pets/<your-pet-id>`, click **Boost for 24h**, complete with card `4242 4242 4242 4242`. The webhook writes a row into `boosts` keyed on the Stripe session ID (idempotent on retries).
+
+---
+
 <div align="center">
   Built with ❤️ in Dubai by <a href="https://taurusai.io">TAURUS AI Corp</a>
 </div>

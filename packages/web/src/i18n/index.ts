@@ -5,7 +5,7 @@ import ar from './ar.json';
 
 i18n.use(initReactI18next).init({
   resources: { en: { translation: en }, ar: { translation: ar } },
-  lng: localStorage.getItem('pawmatch_lang') || 'en',
+  lng: localStorage.getItem('petpawsphere_lang') || 'en',
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
 });

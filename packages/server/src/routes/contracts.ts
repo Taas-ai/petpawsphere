@@ -1,18 +1,24 @@
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { pets, matches, breedingContracts, PawMatchDb } from '@pawmatch/db';
+import { pets, matches, breedingContracts, PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-export function contractsRouter(db: PawMatchDb): Router {
+export function contractsRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
+
+  const VALID_CONTRACT_STATUSES = ['pending', 'signed', 'active', 'completed', 'cancelled'];
 
   // POST / — Create contract from a match
   router.post('/', async (req: AuthRequest, res) => {
     const { matchId, studFeeAED, terms } = req.body;
     if (!matchId) {
       res.status(400).json({ error: 'matchId is required' });
+      return;
+    }
+    if (terms != null && (typeof terms !== 'string' || terms.length > 5000)) {
+      res.status(400).json({ error: 'Terms must be a string ≤5000 characters' });
       return;
     }
 
@@ -39,17 +45,17 @@ export function contractsRouter(db: PawMatchDb): Router {
 
     const id = uuid();
     const now = new Date().toISOString();
-    await db.insert(breedingContracts).values({
+    const newContract = {
       id, matchId,
       ownerAId: petA.ownerId,
       ownerBId: petB.ownerId,
       studFeeAED: studFeeAED ?? null,
       terms: terms ?? null,
+      status: 'pending',
       createdAt: now, updatedAt: now,
-    });
-
-    const [contract] = await db.select().from(breedingContracts).where(eq(breedingContracts.id, id));
-    res.status(201).json(contract);
+    };
+    await db.insert(breedingContracts).values(newContract);
+    res.status(201).json(newContract);
   });
 
   // GET /:id — Get contract
@@ -71,8 +77,8 @@ export function contractsRouter(db: PawMatchDb): Router {
   // PUT /:id — Update contract status
   router.put('/:id', async (req: AuthRequest, res) => {
     const { status } = req.body;
-    if (!status) {
-      res.status(400).json({ error: 'Status is required' });
+    if (!status || !VALID_CONTRACT_STATUSES.includes(status)) {
+      res.status(400).json({ error: `Status must be one of: ${VALID_CONTRACT_STATUSES.join(', ')}` });
       return;
     }
 
@@ -87,9 +93,9 @@ export function contractsRouter(db: PawMatchDb): Router {
       return;
     }
 
-    await db.update(breedingContracts).set({ status, updatedAt: new Date().toISOString() }).where(eq(breedingContracts.id, req.params.id));
-    const [updated] = await db.select().from(breedingContracts).where(eq(breedingContracts.id, req.params.id));
-    res.json(updated);
+    const updatedAt = new Date().toISOString();
+    await db.update(breedingContracts).set({ status, updatedAt }).where(eq(breedingContracts.id, req.params.id));
+    res.json({ ...contract, status, updatedAt });
   });
 
   return router;

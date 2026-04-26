@@ -115,7 +115,7 @@ export function Landing() {
             Ready to Find the Perfect Match?
           </h2>
           <p className="mt-4 text-lg text-amber-100">
-            Join thousands of pet owners across the UAE who trust PawMatch for responsible breeding.
+            Join thousands of pet owners across the UAE who trust PetPawSphere for responsible breeding.
           </p>
           <Link
             to="/register"
@@ -133,16 +133,16 @@ export function Landing() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2 text-white font-bold text-lg">
               <PawPrint className="h-6 w-6 text-amber-500" />
-              PawMatch UAE
+              PetPawSphere
             </div>
             <div className="flex items-center gap-6">
               <Link to="/terms" className="text-amber-200 hover:text-white text-sm transition-colors">Terms of Service</Link>
               <Link to="/privacy" className="text-amber-200 hover:text-white text-sm transition-colors">Privacy Policy</Link>
-              <a href="mailto:contact@pawmatch.ae" className="text-amber-200 hover:text-white text-sm transition-colors">contact@pawmatch.ae</a>
+              <a href="mailto:contact@petpawsphere.com" className="text-amber-200 hover:text-white text-sm transition-colors">contact@petpawsphere.com</a>
             </div>
           </div>
           <div className="mt-6 text-center sm:text-left">
-            <p className="text-sm">&copy; {new Date().getFullYear()} PawMatch UAE. All rights reserved.</p>
+            <p className="text-sm">&copy; {new Date().getFullYear()} PetPawSphere. All rights reserved.</p>
           </div>
         </div>
       </footer>

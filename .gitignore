@@ -8,3 +8,28 @@ firebase-debug.log
 # Capacitor native projects
 packages/web/ios/
 packages/web/android/
+
+# Hookify local rules
+.claude/*.local.md
+
+# Firebase Functions secrets
+functions/.env
+
+# Compiled cloud functions output
+functions/lib/
+
+# OS / editor noise
+.DS_Store
+
+# Firebase local cache
+.firebase/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Codemap watcher state (per-machine, not source)
+.codemap/
+packages/*/.codemap/
+
+# Dev/QA screenshots in repo root (real brand assets live in packages/web/public/)
+/*.png

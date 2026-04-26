@@ -36,7 +36,7 @@ export const vetAdvisorFlow = ai.defineFlow(
   },
   async (input) => {
     const { output } = await ai.generate({
-      prompt: `You are a veterinary breeding advisor for PawMatch UAE.
+      prompt: `You are a veterinary breeding advisor for PetPawSphere.
 
 **Pet Details:**
 - Species: ${input.species}

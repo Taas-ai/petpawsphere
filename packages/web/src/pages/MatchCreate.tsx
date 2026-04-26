@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Heart, Loader2 } from 'lucide-react';
 import { api } from '@/lib/api';
+import { posthog } from '@/lib/posthog';
 
 export function MatchCreate() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export function MatchCreate() {
     mutationFn: () => api.matches.analyze(petAId, petBId),
     onSuccess: (data) => {
       const matchId = data.id as string;
+      posthog.capture('match_requested', { match_id: matchId, compatibility_score: (data as Record<string, unknown>).compatibilityScore });
       navigate(`/matches/${matchId}`);
     },
   });

@@ -33,7 +33,7 @@ export const breedDetectFlow = ai.defineFlow(
       ? [
           { media: { url: input.imageUrl } },
           {
-            text: `Analyze this pet image for PawMatch UAE. Identify the breed, estimate age, describe color pattern, classify size, and provide UAE-specific info (popularity, heat tolerance, price range in AED). If mixed breed, identify primary and secondary breeds.`,
+            text: `Analyze this pet image for PetPawSphere. Identify the breed, estimate age, describe color pattern, classify size, and provide UAE-specific info (popularity, heat tolerance, price range in AED). If mixed breed, identify primary and secondary breeds.`,
           },
         ]
       : `Based on this description, identify the pet breed: "${input.description}". Provide breed characteristics, UAE popularity, heat tolerance rating, and estimated price range in AED.`;

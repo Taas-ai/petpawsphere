@@ -16,7 +16,7 @@ export const petMatchFlow = ai.defineFlow(
   },
   async (input) => {
     const { output } = await ai.generate({
-      prompt: `You are a professional pet breeding compatibility assessor for PawMatch UAE.
+      prompt: `You are a professional pet breeding compatibility assessor for PetPawSphere.
 
 Analyze these two pets for breeding compatibility:
 

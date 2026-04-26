@@ -11,12 +11,14 @@ import {
 } from 'firebase/auth';
 import { auth } from './firebase';
 import { api } from './api';
+import { posthog } from './posthog';
 
 interface User {
   id: string;
   email: string;
   name: string;
   emirate: string;
+  phone?: string;
   role: string;
 }
 
@@ -44,26 +46,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (fbUser) {
         try {
           const profile = await api.auth.me();
-          setUser(profile as unknown as User);
+          const u = profile as unknown as User;
+          setUser(u);
+          posthog.identify(u.id, { email: u.email, name: u.name, emirate: u.emirate, role: u.role });
         } catch {
           // User exists in Firebase but not yet synced to DB
           setUser(null);
         }
       } else {
         setUser(null);
+        posthog.reset();
       }
       setLoading(false);
     });
     return unsubscribe;
   }, []);
 
-  async function syncAfterSignIn(fbUser: FirebaseUser, name?: string, emirate?: string) {
+  async function syncAfterSignIn(fbUser: FirebaseUser, name?: string, emirate?: string, isNew = false) {
     const synced = await api.auth.sync({
       email: fbUser.email!,
       name: name || fbUser.displayName || fbUser.email!.split('@')[0],
       emirate,
     });
-    setUser(synced as unknown as User);
+    const u = synced as unknown as User;
+    setUser(u);
+    posthog.identify(u.id, { email: u.email, name: u.name, emirate: u.emirate, role: u.role });
+    posthog.capture(isNew ? 'user_signed_up' : 'user_signed_in', { method: 'email' });
   }
 
   const loginWithEmail = async (email: string, password: string) => {
@@ -73,20 +81,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const registerWithEmail = async (email: string, password: string, name: string, emirate: string) => {
     const { user: fbUser } = await createUserWithEmailAndPassword(auth, email, password);
-    await syncAfterSignIn(fbUser, name, emirate);
+    await syncAfterSignIn(fbUser, name, emirate, true);
   };
 
   const loginWithGoogle = async () => {
     const { user: fbUser } = await signInWithPopup(auth, new GoogleAuthProvider());
     await syncAfterSignIn(fbUser);
+    posthog.capture('user_signed_in', { method: 'google' });
   };
 
   const loginWithApple = async () => {
     const { user: fbUser } = await signInWithPopup(auth, new OAuthProvider('apple.com'));
     await syncAfterSignIn(fbUser);
+    posthog.capture('user_signed_in', { method: 'apple' });
   };
 
   const logout = async () => {
+    posthog.capture('user_signed_out');
     await signOut(auth);
     setUser(null);
     setFirebaseUser(null);

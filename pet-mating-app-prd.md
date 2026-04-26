@@ -889,7 +889,7 @@ User Opens Discovery
 | Tier | Price | Features |
 |------|-------|----------|
 | **Free** | AED 0 | 5 swipes/day, basic profile, ads |
-| **Premium** | AED 49/month | Unlimited swipes, 10 super likes, no ads |
+| **Plus** | AED 39/month | Unlimited swipes, 10 super likes, no ads |
 | **Pro Breeder** | AED 199/month | All premium + analytics, featured listing, badges |
 | **Clinic Partner** | AED 499/month | Vet portal, patient management, marketing |
 

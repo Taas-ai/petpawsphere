@@ -17,7 +17,7 @@ export function Navbar() {
   const toggleLanguage = () => {
     const newLang = isArabic ? 'en' : 'ar';
     i18n.changeLanguage(newLang);
-    localStorage.setItem('pawmatch_lang', newLang);
+    localStorage.setItem('petpawsphere_lang', newLang);
     document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
   };
 
@@ -37,7 +37,7 @@ export function Navbar() {
               className="flex items-center gap-2 text-xl font-bold text-amber-600 hover:text-amber-700 transition-colors"
             >
               <PawPrint className="h-7 w-7" />
-              <span>PawMatch</span>
+              <span>PetPawSphere</span>
             </Link>
           </div>
 

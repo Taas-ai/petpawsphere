@@ -23,9 +23,14 @@ export function validateImageUrl(url: string): { valid: boolean; error?: string 
     }
 
     // Block private/internal hostnames
-    const blockedHosts = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]', 'metadata.google.internal'];
+    const blockedHosts = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]', '::1', 'metadata.google.internal'];
     if (blockedHosts.includes(parsed.hostname)) {
       return { valid: false, error: 'Internal URLs are not allowed' };
+    }
+    // Block IPv6 private ranges (link-local, unique-local, loopback)
+    const h = parsed.hostname.toLowerCase().replace(/^\[|\]$/g, '');
+    if (h === '::' || h.startsWith('fe80:') || h.startsWith('fc00:') || h.startsWith('fd')) {
+      return { valid: false, error: 'Private IP not allowed' };
     }
 
     // Block private IP ranges

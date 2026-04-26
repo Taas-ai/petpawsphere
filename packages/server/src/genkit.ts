@@ -10,7 +10,7 @@ export const ai = genkit({
 });
 
 // ─────────────────────────────────────────────
-// SCHEMAS — Shared Zod schemas for PawMatch
+// SCHEMAS — Shared Zod schemas for PetPawSphere
 // ─────────────────────────────────────────────
 
 export const PetProfileSchema = z.object({

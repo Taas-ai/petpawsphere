@@ -3,6 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft, PawPrint, MapPin, Edit, Heart } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useAuth } from '@/lib/auth-context';
+import { Paywall } from '@/components/Paywall';
+
+const BOOST_24H_PRICE_ID = (import.meta.env.VITE_STRIPE_PRICE_BOOST_24H as string | undefined) ?? '';
 
 export function PetDetail() {
   const { id } = useParams<{ id: string }>();
@@ -32,7 +35,12 @@ export function PetDetail() {
   }
 
   const isOwner = user?.id === (pet.ownerId as string);
-  const healthRecords = (pet.healthRecords as string[]) ?? [];
+  const rawHR = pet.healthRecords;
+  const healthRecords: string[] = Array.isArray(rawHR)
+    ? (rawHR as string[])
+    : typeof rawHR === 'string' && rawHR.startsWith('[')
+      ? (JSON.parse(rawHR) as string[])
+      : [];
   const species = (pet.species as string) ?? 'dog';
 
   return (
@@ -86,6 +94,18 @@ export function PetDetail() {
           </Link>
         </div>
       </div>
+
+      {/* Boost paywall — dark-launched, renders only when VITE_MONETIZATION_ENABLED=true */}
+      {isOwner && BOOST_24H_PRICE_ID && (
+        <div className="mb-6">
+          <Paywall
+            priceId={BOOST_24H_PRICE_ID}
+            petId={String(pet.id)}
+            label="Boost for 24h"
+            description="Put this profile at the top of search results for 24 hours."
+          />
+        </div>
+      )}
 
       {/* Info Grid */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
