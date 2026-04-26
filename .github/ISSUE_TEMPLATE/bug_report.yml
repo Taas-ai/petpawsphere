@@ -11,7 +11,7 @@ body:
     id: version
     attributes:
       label: Version
-      description: What version of PawMatch UAE are you running?
+      description: What version of PetPawSphere are you running?
       placeholder: "1.0.0"
     validations:
       required: true

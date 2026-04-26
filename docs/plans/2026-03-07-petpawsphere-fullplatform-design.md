@@ -1,4 +1,4 @@
-# PawMatch UAE Full Platform Design
+# PetPawSphere Full Platform Design
 
 **Date:** 2026-03-07
 **Author:** TAURUS AI Corp

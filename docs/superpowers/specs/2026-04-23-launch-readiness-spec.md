@@ -10,7 +10,7 @@
 The 2026-03-09 readiness report listed 8 P0 blockers and 8 warnings. As of 2026-04-23, audit shows most P0s shipped in commits `9389179`, `60d5a7e`, `dcf0686`. This spec closes the remaining genuine gaps **and** extends the dark-launched monetization scaffold from "one-time boost" into "subscription paywall after match #3" per the revised brief.
 
 Pricing (see `MONETIZATION.md`, `pet-mating-app-prd.md`, `docs/plans/2026-03-09-launch-readiness-report.md`, all updated 2026-04-23):
-- **PawMatch Plus:** 39 AED/month or 390 AED/year
+- **PetPawSphere Plus:** 39 AED/month or 390 AED/year
 - Free tier: 3 `/matches/analyze` POSTs per calendar month (UTC)
 
 ## 2. Non-goals
@@ -226,7 +226,7 @@ New keys, placed in existing i18n files:
 
 | Key | English | Arabic |
 |---|---|---|
-| `paywall.heading` | "Upgrade to PawMatch Plus" | "الترقية إلى PawMatch Plus" |
+| `paywall.heading` | "Upgrade to PetPawSphere Plus" | "الترقية إلى PetPawSphere Plus" |
 | `paywall.subtext` | "You've used {{used}}/{{quota}} matches this month. Get unlimited with Plus." | "لقد استخدمت {{used}}/{{quota}} مطابقات هذا الشهر. احصل على مطابقات غير محدودة مع Plus." |
 | `paywall.cta` | "Upgrade for 39 AED/mo" | "الترقية مقابل 39 درهم/شهر" |
 | `quota.used` | "{{used}}/{{quota}} matches used this month" | "تم استخدام {{used}}/{{quota}} مطابقات هذا الشهر" |

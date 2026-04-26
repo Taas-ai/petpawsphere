@@ -1,4 +1,4 @@
-# PawMatch Phase 2 — Revenue Moat Strategy
+# PetPawSphere Phase 2 — Revenue Moat Strategy
 
 ## 1. Hedera Breeding Contracts
 - Smart contract escrow for breeding fees

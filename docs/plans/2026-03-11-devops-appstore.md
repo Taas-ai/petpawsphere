@@ -1,4 +1,4 @@
-# PawMatch UAE — DevOps & App Store Deployment Plan
+# PetPawSphere — DevOps & App Store Deployment Plan
 **Created**: 2026-03-10
 **Resume**: Start next session with "Continue the DevOps + App Store deployment plan"
 
@@ -16,7 +16,7 @@
 ---
 
 ## Phase 1: Firebase Functions + Hosting Deploy
-**Goal**: Get backend live at `pawmatch-uae.web.app`
+**Goal**: Get backend live at `petpawsphere.web.app`
 **Blocker**: Needs interactive terminal (Firebase login)
 
 ### Step 1.1 — Verify firebase.json is correct
@@ -31,7 +31,7 @@ Firebase Functions needs these secrets (set via Firebase CLI, not .env):
 firebase functions:secrets:set DATABASE_URL
 firebase functions:secrets:set GOOGLE_GENAI_API_KEY
 # FIREBASE_PROJECT_ID is auto-provided in Functions environment
-# ALLOWED_ORIGINS should be set to https://pawmatch-uae.web.app
+# ALLOWED_ORIGINS should be set to https://petpawsphere.web.app
 ```
 
 ### Step 1.3 — Build and deploy
@@ -44,7 +44,7 @@ firebase deploy --only hosting,functions
 ```
 
 ### Step 1.4 — Verify
-- [ ] Open `https://pawmatch-uae.web.app` — landing page loads
+- [ ] Open `https://petpawsphere.web.app` — landing page loads
 - [ ] Register new user — Firebase Auth works
 - [ ] Create a pet — Supabase DB write works
 - [ ] Run breed detect — Gemini AI works
@@ -62,12 +62,12 @@ firebase deploy --only hosting,functions
 ```
 
 ### Step 2.2 — Verify `packages/web/src/lib/capacitor.ts`
-Make sure production URL returns `''` (same-origin via Hosting rewrite) or `https://pawmatch-uae.web.app`
+Make sure production URL returns `''` (same-origin via Hosting rewrite) or `https://petpawsphere.web.app`
 
 ### Step 2.3 — Add domain to Firebase Auth
 Firebase Console → Authentication → Settings → Authorized Domains:
-- Add: `pawmatch-uae.web.app`
-- Add: `pawmatch.ae` (when custom domain is ready)
+- Add: `petpawsphere.web.app`
+- Add: `petpawsphere.com` (when custom domain is ready)
 
 ---
 
@@ -100,15 +100,15 @@ Take screenshots of: Landing, Dashboard, Browse Pets, Match Detail, Chat, AI Too
 - [ ] Google Play Console account created ($25 one-time)
 - [ ] Keystore generated and backed up securely:
   ```bash
-  keytool -genkey -v -keystore pawmatch-release.keystore \
-    -alias pawmatch -keyalg RSA -keysize 2048 -validity 10000
-  # Store in: ~/secure/pawmatch-release.keystore (NOT in git)
+  keytool -genkey -v -keystore petpawsphere-release.keystore \
+    -alias petpawsphere -keyalg RSA -keysize 2048 -validity 10000
+  # Store in: ~/secure/petpawsphere-release.keystore (NOT in git)
   ```
 - [ ] Build signed AAB in Android Studio
   - `npx cap sync android && npx cap open android`
   - Build → Generate Signed Bundle → Android App Bundle
 - [ ] Play Console store listing:
-  - [ ] App title: "PawMatch UAE - Pet Breeding"
+  - [ ] App title: "PetPawSphere - Pet Breeding"
   - [ ] Short description (80 chars max)
   - [ ] Full description (4000 chars max)
   - [ ] Screenshots uploaded (min 2 phone screenshots)
@@ -126,7 +126,7 @@ Take screenshots of: Landing, Dashboard, Browse Pets, Match Detail, Chat, AI Too
 ### Checklist
 - [ ] Apple Developer account enrolled ($99/year)
 - [ ] Xcode project configured:
-  - Bundle ID: `ae.pawmatch.app`
+  - Bundle ID: `ae.petpawsphere.app`
   - Team set to Apple Developer account
   - **Sign In with Apple capability** enabled (required since Google login offered)
   - Version: 1.0.0, Build: 1
@@ -138,14 +138,14 @@ Take screenshots of: Landing, Dashboard, Browse Pets, Match Detail, Chat, AI Too
   - [ ] Description (Arabic + English)
   - [ ] Screenshots uploaded for all required sizes
   - [ ] Age rating: 4+
-  - [ ] Privacy policy URL: `https://pawmatch-uae.web.app/privacy`
+  - [ ] Privacy policy URL: `https://petpawsphere.web.app/privacy`
   - [ ] Data collection declarations
 - [ ] Submit for review
 
 ---
 
 ## Phase 6: Custom Domain (Optional but Recommended)
-**Goal**: `app.pawmatch.ae` instead of `pawmatch-uae.web.app`
+**Goal**: `app.petpawsphere.com` instead of `petpawsphere.web.app`
 
 ```bash
 # In Firebase Console → Hosting → Add custom domain
@@ -190,12 +190,12 @@ jobs:
 | `DATABASE_URL` | Firebase Functions secret | Supabase connection string |
 | `GOOGLE_GENAI_API_KEY` | Firebase Functions secret | From Google AI Studio |
 | `VITE_FIREBASE_API_KEY` | Web build env | From Firebase Console |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Web build env | `pawmatch-uae.firebaseapp.com` |
-| `VITE_FIREBASE_PROJECT_ID` | Web build env | `pawmatch-uae` |
+| `VITE_FIREBASE_AUTH_DOMAIN` | Web build env | `petpawsphere.firebaseapp.com` |
+| `VITE_FIREBASE_PROJECT_ID` | Web build env | `petpawsphere` |
 | `VITE_FIREBASE_APP_ID` | Web build env | From Firebase Console |
 | `VITE_POSTHOG_KEY` | Web build env | From PostHog project settings |
 | `VITE_RECAPTCHA_SITE_KEY` | Web build env | From reCAPTCHA v3 console (optional) |
-| `ALLOWED_ORIGINS` | Firebase Functions config | `https://pawmatch-uae.web.app` |
+| `ALLOWED_ORIGINS` | Firebase Functions config | `https://petpawsphere.web.app` |
 
 ---
 

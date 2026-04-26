@@ -150,7 +150,7 @@ packages/web/package.json                        # add @sentry/react
 
 - [ ] **Step 0.1: Create PR-1 feature branch**
 
-Run: `cd "/Users/taurus_ai/Desktop/JACOBS's Projects/PetPAWSphere" && git checkout -b feat/pr1-readiness-gaps`
+Run: `cd "/Users/taurus_ai/Desktop/JACOBS's Projects/PetPawSphere" && git checkout -b feat/pr1-readiness-gaps`
 
 Expected: `Switched to a new branch 'feat/pr1-readiness-gaps'`
 
@@ -535,7 +535,7 @@ EOF
 
 - [ ] **Step A.8.3: Verify clean state**
 
-Run: `git status --short | grep -vE "\.codemap/|\.DS_Store|\.firebase/|pawmatch-.*\.png|supabase-.*\.png|pets-list-.*\.png|dashboard-.*\.png|tsconfig\.tsbuildinfo"`
+Run: `git status --short | grep -vE "\.codemap/|\.DS_Store|\.firebase/|petpawsphere-.*\.png|supabase-.*\.png|pets-list-.*\.png|dashboard-.*\.png|tsconfig\.tsbuildinfo"`
 
 Expected: empty (only tooling/screenshot/build-artifact noise remains untracked).
 

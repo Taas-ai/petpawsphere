@@ -1,4 +1,4 @@
-# PAWMATCH UAE: Product Requirements Document
+# PETPAWSPHERE: Product Requirements Document
 
 ## Pet Mating Connection Platform for UAE/GCC Market
 
@@ -11,7 +11,7 @@
 
 # EXECUTIVE SUMMARY
 
-**Product Name:** PawMatch UAE
+**Product Name:** PetPawSphere
 **Tagline:** "Find the Perfect Match for Your Pet"
 
 **Vision:** Build the UAE's first trusted, AI-powered pet mating platform that connects responsible pet owners for ethical breeding through verified profiles, genetic health screening, and end-to-end breeding journey support.
@@ -245,7 +245,7 @@ Empower UAE pet owners to find genetically compatible, health-verified breeding 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     PAWMATCH UAE PLATFORM                        │
+│                     PETPAWSPHERE PLATFORM                        │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
@@ -673,7 +673,7 @@ Veterinary Dashboard:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      PAWMATCH UAE PLATFORM                       │
+│                      PETPAWSPHERE PLATFORM                       │
 ├─────────────────────────────────────────────────────────────────┤
 │  Client Layer                                                    │
 │  ├── iOS App (Swift/SwiftUI)                                    │

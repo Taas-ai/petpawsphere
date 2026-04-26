@@ -28,7 +28,7 @@ Confirmed public app config (from user prompt):
 
 **No hardcoded references to a different project found in source code.** Everything routes through Vite env with `petapp-38f4a` fallbacks.
 
-**Mismatch to fix — `.env.example`** still shows `pawmatch-uae` values that do not match the real project:
+**Mismatch to fix — `.env.example`** still shows `petpawsphere` values that do not match the real project:
 
 ```diff
 --- a/.env.example
@@ -37,9 +37,9 @@ Confirmed public app config (from user prompt):
  # ─── Web (Vite) ──────────────────────────────────────────────────────────────
  # Get these from: Firebase Console → Project Settings → Your apps → Web app
  VITE_FIREBASE_API_KEY=your-firebase-api-key
--VITE_FIREBASE_AUTH_DOMAIN=pawmatch-uae.firebaseapp.com
--VITE_FIREBASE_PROJECT_ID=pawmatch-uae
--VITE_FIREBASE_STORAGE_BUCKET=pawmatch-uae.appspot.com
+-VITE_FIREBASE_AUTH_DOMAIN=petpawsphere.firebaseapp.com
+-VITE_FIREBASE_PROJECT_ID=petpawsphere
+-VITE_FIREBASE_STORAGE_BUCKET=petpawsphere.appspot.com
 -VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
 -VITE_FIREBASE_APP_ID=your-app-id
 +VITE_FIREBASE_AUTH_DOMAIN=petapp-38f4a.firebaseapp.com
@@ -49,7 +49,7 @@ Confirmed public app config (from user prompt):
 +VITE_FIREBASE_APP_ID=1:947238677887:web:0fa25681ac59aab6bafe4a
 ```
 
-Also `docs/plans/2026-03-11-devops-appstore.md` table of env vars lists `pawmatch-uae` values — documentation drift. Update when touching that doc next.
+Also `docs/plans/2026-03-11-devops-appstore.md` table of env vars lists `petpawsphere` values — documentation drift. Update when touching that doc next.
 
 **`firebase.json` target coverage:**
 
@@ -239,7 +239,7 @@ gitleaks detect --source . -v
 | i18n EN/AR | works | — |
 | PostHog analytics | works | Optional key |
 | App Check (reCAPTCHA Enterprise) | wired, off by default | Need `VITE_RECAPTCHA_SITE_KEY` (#5) |
-| Firebase Functions wrapper (`api` in `me-central1`) | works | `functions/esbuild.mjs` alias uses old `@pawmatch/db` name (non-blocking today) |
+| Firebase Functions wrapper (`api` in `me-central1`) | works | `functions/esbuild.mjs` alias uses old `@petpawsphere/db` name (non-blocking today) |
 | Firebase Hosting config | works | No custom domain configured (#6) |
 | CI — test + web build | works | — |
 | CI — deploy to Firebase | **not implemented** | Needs `.github/workflows/deploy.yml` + service account secret (#7, §B above) |

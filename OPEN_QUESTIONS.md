@@ -4,15 +4,15 @@ Blocking or near-blocking unknowns uncovered while producing the handoff. Resolv
 
 ## Identity / naming
 
-1. **Repo vs Firebase project name mismatch.** GitHub repo is `PawMatch-UAE`, app appears in code as `PetPawSphere` / `PawMatch`, Firebase project is `petapp-38f4a`. Is the production brand **PawMatch UAE**, **PetPawSphere**, or something else? Locking this down affects: auth domain display name, Apple Services ID, App Store listing, domain purchase.
-2. `.env.example` still references `pawmatch-uae.firebaseapp.com` / `pawmatch-uae.appspot.com` while the real project is `petapp-38f4a`. Should `.env.example` be updated to `petapp-38f4a.*` (canonical) or is `pawmatch-uae` the intended project and `petapp-38f4a` just a dev sandbox?
+1. **Repo vs Firebase project name mismatch.** GitHub repo is `petpawsphere`, app appears in code as `PetPawSphere` / `PetPawSphere`, Firebase project is `petapp-38f4a`. Is the production brand **PetPawSphere**, **PetPawSphere**, or something else? Locking this down affects: auth domain display name, Apple Services ID, App Store listing, domain purchase.
+2. `.env.example` still references `petpawsphere.firebaseapp.com` / `petpawsphere.appspot.com` while the real project is `petapp-38f4a`. Should `.env.example` be updated to `petapp-38f4a.*` (canonical) or is `petpawsphere` the intended project and `petapp-38f4a` just a dev sandbox?
 
 ## Infrastructure
 
 3. **Is the Supabase Postgres instance already provisioned and reachable from `me-central1`?** `functions/src/index.ts` reads `DATABASE_URL` at cold start and makes a pooled Postgres connection. If the DB is in `ap-southeast-1` or `us-east-1`, each cold start pays ~200-400ms of RTT. Worth considering Supabase MEA region or Cloud SQL colocated in `me-central1`.
 4. **Billing plan on `petapp-38f4a`.** Blaze is required for v2 functions. Confirm the plan is upgraded.
 5. **App Check / reCAPTCHA key.** `VITE_RECAPTCHA_SITE_KEY` is optional today; without it, the API is exposed to bots at the Firebase Functions level once auth tokens are acquired. Should we enable App Check in enforcement mode before paid launch?
-6. **Custom domain.** No CNAME/TXT records found in the repo. Which domain should Hosting map to — `pawmatch.ae`, `petpawsphere.com`, or another? Who owns the registrar?
+6. **Custom domain.** No CNAME/TXT records found in the repo. Which domain should Hosting map to — `petpawsphere.com`, `petpawsphere.com`, or another? Who owns the registrar?
 
 ## Secrets & security
 
@@ -30,4 +30,4 @@ Blocking or near-blocking unknowns uncovered while producing the handoff. Resolv
 
 ## App store status
 
-15. Are there App Store Connect / Google Play Console listings started yet? Bundle ID in Capacitor is `com.petpawsphere.app` — is that reserved on both stores, or does it need to be re-registered as `ae.pawmatch.app` to match the brand?
+15. Are there App Store Connect / Google Play Console listings started yet? Bundle ID in Capacitor is `com.petpawsphere.app` — is that reserved on both stores, or does it need to be re-registered as `ae.petpawsphere.app` to match the brand?

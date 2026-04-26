@@ -1,4 +1,4 @@
-# Contributing to PawMatch UAE
+# Contributing to PetPawSphere
 
 Thank you for your interest in contributing! This document outlines the process.
 

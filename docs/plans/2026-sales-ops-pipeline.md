@@ -1,4 +1,4 @@
-# PawMatch UAE — Sales Operations Intelligence Report
+# PetPawSphere — Sales Operations Intelligence Report
 **Generated:** March 10, 2026 | **Owner:** TAURUS AI Corp Sales Ops
 **Classification:** Internal — Confidential
 
@@ -24,7 +24,7 @@
 
 | Tier | Product | Price | Target Segment |
 |------|---------|-------|----------------|
-| **Starter** | PawMatch SaaS (self-serve) | AED 149/mo | Pet owners, small breeders |
+| **Starter** | PetPawSphere SaaS (self-serve) | AED 149/mo | Pet owners, small breeders |
 | **Professional** | Breeder Pro (verified badge, priority listing) | AED 499/mo | Licensed UAE breeders |
 | **Clinic** | Vet Clinic Portal (AI diagnostics, OCR, advisory) | AED 2,500/mo | UAE veterinary clinics |
 | **Enterprise** | White-label platform (full rebrand + infra) | AED 150K–500K/yr | Pet retail chains, govts |
@@ -150,7 +150,7 @@ PetCity serves 150+ GCC stores. Every customer who buys food from you
 also needs to breed or rehome their pet — right now they do that on
 Facebook Groups.
 
-PawMatch UAE (pawmatch.ae) is the UAE's first AI-powered pet breeding
+PetPawSphere (petpawsphere.com) is the UAE's first AI-powered pet breeding
 platform — breed detection, genetic compatibility, AI vet advisor,
 Arabic + English UI, UAE PDPL compliant.
 
@@ -221,7 +221,7 @@ Dear [Name / H.E.],
 Dubai Municipality manages UAE's growing pet population through Animal
 Welfare programs. We believe AI can significantly improve efficiency.
 
-PawMatch UAE is an open-source (Apache 2.0) AI pet platform that
+PetPawSphere is an open-source (Apache 2.0) AI pet platform that
 includes:
 - Breed identification from photos (reduces manual intake assessment time)
 - Health diagnostic triage (prioritizes emergency vet cases)
@@ -337,9 +337,9 @@ Actions:
 
 ## 9. COMPETITIVE POSITIONING
 
-### PawMatch UAE vs Alternatives
+### PetPawSphere vs Alternatives
 
-| Feature | PawMatch UAE | Facebook Groups | Dubizzle | PetMeetly |
+| Feature | PetPawSphere | Facebook Groups | Dubizzle | PetMeetly |
 |---------|-------------|-----------------|----------|-----------|
 | AI Breed Detection | ✅ Gemini Vision | ❌ | ❌ | ❌ |
 | Genetic Compatibility | ✅ AI-scored | ❌ | ❌ | ❌ |
@@ -387,7 +387,7 @@ Actions:
 - [ ] Identify 10 Dubai vet clinics with online presence
 - [ ] Send Sequence C with "30-day free trial" offer
 - [ ] Create case study template (to be filled after first pilot)
-- [ ] Publish PawMatch UAE on Product Hunt (drives international leads)
+- [ ] Publish PetPawSphere on Product Hunt (drives international leads)
 
 ---
 

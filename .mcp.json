@@ -3,7 +3,7 @@
     "petpawsphere-genkit": {
       "command": "node",
       "args": ["--env-file=../../.env", "../../node_modules/.bin/tsx", "src/mcp-server.ts"],
-      "cwd": "/Users/taurus_ai/Desktop/JACOBS's Projects/JACOB_PET_APP/packages/server",
+      "cwd": "/Users/taurus_ai/Desktop/JACOBS's Projects/PetPawSphere/packages/server",
       "env": {}
     }
   }

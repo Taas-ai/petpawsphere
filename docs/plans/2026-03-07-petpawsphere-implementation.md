@@ -1,4 +1,4 @@
-# PawMatch UAE Full Platform Implementation Plan
+# PetPawSphere Full Platform Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
@@ -29,7 +29,7 @@ Replace root `package.json` with:
 
 ```json
 {
-  "name": "pawmatch-uae",
+  "name": "petpawsphere",
   "version": "1.0.0",
   "private": true,
   "workspaces": ["packages/*"],
@@ -52,7 +52,7 @@ Replace root `package.json` with:
 
 ```json
 {
-  "name": "@pawmatch/db",
+  "name": "@petpawsphere/db",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -110,7 +110,7 @@ rmdir src
 
 ```json
 {
-  "name": "@pawmatch/server",
+  "name": "@petpawsphere/server",
   "version": "1.0.0",
   "private": true,
   "type": "commonjs",
@@ -122,7 +122,7 @@ rmdir src
     "genkit:dev": "npx genkit start -- tsx src/mcp-server.ts"
   },
   "dependencies": {
-    "@pawmatch/db": "*",
+    "@petpawsphere/db": "*",
     "@genkit-ai/express": "^1.29.0",
     "@genkit-ai/google-genai": "^1.29.0",
     "@genkit-ai/mcp": "^1.29.0",
@@ -321,14 +321,14 @@ import * as schema from './schema';
 export * from './schema';
 export { schema };
 
-export function createDb(dbPath: string = './pawmatch.db') {
+export function createDb(dbPath: string = './petpawsphere.db') {
   const sqlite = new Database(dbPath);
   sqlite.pragma('journal_mode = WAL');
   sqlite.pragma('foreign_keys = ON');
   return drizzle(sqlite, { schema });
 }
 
-export type PawMatchDb = ReturnType<typeof createDb>;
+export type PetPawSphereDb = ReturnType<typeof createDb>;
 ```
 
 **Step 3: Write drizzle config**
@@ -343,7 +343,7 @@ export default defineConfig({
   out: './migrations',
   dialect: 'sqlite',
   dbCredentials: {
-    url: './pawmatch.db',
+    url: './petpawsphere.db',
   },
 });
 ```
@@ -676,7 +676,7 @@ Create `packages/server/src/middleware/auth.ts`:
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'pawmatch-dev-secret-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'petpawsphere-dev-secret-change-in-production';
 
 export interface AuthRequest extends Request {
   userId?: string;
@@ -711,11 +711,11 @@ import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { users } from '@pawmatch/db';
-import { PawMatchDb } from '@pawmatch/db';
+import { users } from '@petpawsphere/db';
+import { PetPawSphereDb } from '@petpawsphere/db';
 import { signToken, requireAuth, AuthRequest } from '../middleware/auth';
 
-export function authRouter(db: PawMatchDb): Router {
+export function authRouter(db: PetPawSphereDb): Router {
   const router = Router();
 
   router.post('/register', async (req, res) => {
@@ -781,10 +781,10 @@ Create `packages/server/src/api-server.ts`:
 ```typescript
 import express from 'express';
 import cors from 'cors';
-import { createDb } from '@pawmatch/db';
+import { createDb } from '@petpawsphere/db';
 import { authRouter } from './routes/auth';
 
-export function createApp(dbPath: string = './pawmatch.db') {
+export function createApp(dbPath: string = './petpawsphere.db') {
   const db = createDb(dbPath);
   const app = express();
 
@@ -799,7 +799,7 @@ export function createApp(dbPath: string = './pawmatch.db') {
 if (require.main === module) {
   const port = process.env.PORT || 3001;
   const app = createApp();
-  app.listen(port, () => console.log(`PawMatch API running on http://localhost:${port}`));
+  app.listen(port, () => console.log(`PetPawSphere API running on http://localhost:${port}`));
 }
 ```
 
@@ -930,11 +930,11 @@ Create `packages/server/src/routes/pets.ts`:
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq, and, sql } from 'drizzle-orm';
-import { pets } from '@pawmatch/db';
-import { PawMatchDb } from '@pawmatch/db';
+import { pets } from '@petpawsphere/db';
+import { PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-export function petsRouter(db: PawMatchDb): Router {
+export function petsRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
@@ -1120,11 +1120,11 @@ Create `packages/server/src/routes/matches.ts`:
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq, or } from 'drizzle-orm';
-import { matches, pets } from '@pawmatch/db';
-import { PawMatchDb } from '@pawmatch/db';
+import { matches, pets } from '@petpawsphere/db';
+import { PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-export function matchesRouter(db: PawMatchDb): Router {
+export function matchesRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
@@ -1230,15 +1230,15 @@ Create `packages/server/src/routes/messages.ts`:
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { messages, matches, pets } from '@pawmatch/db';
-import { PawMatchDb } from '@pawmatch/db';
+import { messages, matches, pets } from '@petpawsphere/db';
+import { PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-export function messagesRouter(db: PawMatchDb): Router {
+export function messagesRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
-  function isMatchParticipant(db: PawMatchDb, matchId: string, userId: string): boolean {
+  function isMatchParticipant(db: PetPawSphereDb, matchId: string, userId: string): boolean {
     const match = db.select().from(matches).where(eq(matches.id, matchId)).get();
     if (!match) return false;
     const petA = db.select().from(pets).where(eq(pets.id, match.petAId)).get();
@@ -1306,11 +1306,11 @@ Create `packages/server/src/routes/ai-tools.ts`:
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { pets, vetConsultations } from '@pawmatch/db';
-import { PawMatchDb } from '@pawmatch/db';
+import { pets, vetConsultations } from '@petpawsphere/db';
+import { PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-export function aiToolsRouter(db: PawMatchDb): Router {
+export function aiToolsRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
@@ -1387,11 +1387,11 @@ Create `packages/server/src/routes/contracts.ts`:
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 import { eq } from 'drizzle-orm';
-import { breedingContracts, matches, pets } from '@pawmatch/db';
-import { PawMatchDb } from '@pawmatch/db';
+import { breedingContracts, matches, pets } from '@petpawsphere/db';
+import { PetPawSphereDb } from '@petpawsphere/db';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 
-export function contractsRouter(db: PawMatchDb): Router {
+export function contractsRouter(db: PetPawSphereDb): Router {
   const router = Router();
   router.use(requireAuth);
 
@@ -1407,7 +1407,7 @@ export function contractsRouter(db: PawMatchDb): Router {
       const id = uuid();
       db.insert(breedingContracts).values({
         id, matchId, ownerAId: petA.ownerId, ownerBId: petB.ownerId,
-        studFeeAED, terms, contractText: `Breeding agreement for ${petA.name} and ${petB.name}. Generated by PawMatch UAE.`,
+        studFeeAED, terms, contractText: `Breeding agreement for ${petA.name} and ${petB.name}. Generated by PetPawSphere.`,
       }).run();
 
       const contract = db.select().from(breedingContracts).where(eq(breedingContracts.id, id)).get();
@@ -1494,7 +1494,7 @@ Final `packages/server/src/api-server.ts`:
 ```typescript
 import express from 'express';
 import cors from 'cors';
-import { createDb } from '@pawmatch/db';
+import { createDb } from '@petpawsphere/db';
 import { authRouter } from './routes/auth';
 import { petsRouter } from './routes/pets';
 import { matchesRouter } from './routes/matches';
@@ -1503,7 +1503,7 @@ import { aiToolsRouter } from './routes/ai-tools';
 import { contractsRouter } from './routes/contracts';
 import { resourcesRouter } from './routes/resources';
 
-export function createApp(dbPath: string = './pawmatch.db') {
+export function createApp(dbPath: string = './petpawsphere.db') {
   const db = createDb(dbPath);
   const app = express();
 
@@ -1524,7 +1524,7 @@ export function createApp(dbPath: string = './pawmatch.db') {
 if (require.main === module) {
   const port = process.env.PORT || 3001;
   const app = createApp();
-  app.listen(port, () => console.log(`PawMatch API running on http://localhost:${port}`));
+  app.listen(port, () => console.log(`PetPawSphere API running on http://localhost:${port}`));
 }
 ```
 
@@ -1561,7 +1561,7 @@ cd web
 
 ```json
 {
-  "name": "@pawmatch/web",
+  "name": "@petpawsphere/web",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -1659,7 +1659,7 @@ Create `packages/web/src/lib/api.ts`:
 const API_BASE = '/api';
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
-  const token = localStorage.getItem('pawmatch_token');
+  const token = localStorage.getItem('petpawsphere_token');
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
     headers: {
@@ -1751,9 +1751,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('pawmatch_token');
+    const token = localStorage.getItem('petpawsphere_token');
     if (token) {
-      api.auth.me().then(setUser).catch(() => localStorage.removeItem('pawmatch_token')).finally(() => setLoading(false));
+      api.auth.me().then(setUser).catch(() => localStorage.removeItem('petpawsphere_token')).finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
@@ -1761,18 +1761,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string) => {
     const { token, user } = await api.auth.login({ email, password });
-    localStorage.setItem('pawmatch_token', token);
+    localStorage.setItem('petpawsphere_token', token);
     setUser(user);
   };
 
   const register = async (data: { email: string; password: string; name: string; emirate: string }) => {
     const { token, user } = await api.auth.register(data);
-    localStorage.setItem('pawmatch_token', token);
+    localStorage.setItem('petpawsphere_token', token);
     setUser(user);
   };
 
   const logout = () => {
-    localStorage.removeItem('pawmatch_token');
+    localStorage.removeItem('petpawsphere_token');
     setUser(null);
   };
 
@@ -2086,13 +2086,13 @@ npm i -D concurrently
 ```json
 {
   "scripts": {
-    "dev": "concurrently \"npm run dev -w @pawmatch/server\" \"npm run dev -w @pawmatch/web\"",
+    "dev": "concurrently \"npm run dev -w @petpawsphere/server\" \"npm run dev -w @petpawsphere/web\"",
     "build": "npm run build --workspaces",
     "test": "vitest run",
-    "db:generate": "npm run generate -w @pawmatch/db",
-    "db:migrate": "npm run migrate -w @pawmatch/db",
-    "db:seed": "npm run seed -w @pawmatch/db",
-    "mcp": "npm run mcp -w @pawmatch/server"
+    "db:generate": "npm run generate -w @petpawsphere/db",
+    "db:migrate": "npm run migrate -w @petpawsphere/db",
+    "db:seed": "npm run seed -w @petpawsphere/db",
+    "mcp": "npm run mcp -w @petpawsphere/server"
   }
 }
 ```
@@ -2139,7 +2139,7 @@ npm run dev
 
 ```bash
 git add -A
-git commit -m "feat: PawMatch UAE full platform - MVP complete"
+git commit -m "feat: PetPawSphere full platform - MVP complete"
 ```
 
 ---
