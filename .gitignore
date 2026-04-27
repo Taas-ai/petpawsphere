@@ -36,3 +36,6 @@ packages/*/.codemap/
 
 # AI-generated brand iteration drafts — final picks get hand-curated into packages/web/public/brand/
 _brand_iterations/
+
+# Per-user Claude Code settings (permissions, MCP overrides)
+.claude/settings.local.json
