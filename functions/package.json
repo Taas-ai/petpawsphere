@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "lib/index.js",
-  "engines": { "node": "20" },
+  "engines": { "node": "22" },
   "scripts": {
     "build": "node esbuild.mjs",
     "serve": "npm run build && firebase emulators:start --only functions",
